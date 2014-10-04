@@ -1,0 +1,5 @@
+services:
+    ajax_flash_listener:
+        class: Manuelj555\Bundle\AjaxFlashBundle\EventListener\PrepareFlashesListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
