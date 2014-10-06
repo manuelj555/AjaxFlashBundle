@@ -132,12 +132,12 @@ $.ajaxFlash('error', function (message, type, title, icon) {
 // Working with array messages:
 
 $.ajaxFlash(function (messages, type, title, icon) {
-    //call in allways flash type, this function is called one time for all messages of the same type.
+    //call in all flash types, this function is called one time for each message type.
     //the messages parameter is an array.
 });
 
 $.ajaxFlash(function (messages, type, title, icon) {
-    //call success and info flash types, this function is called one time for all messages of the same type.
+    //call success and info flash types, this function is called one time for each message type.
     //the messages parameter is an array.
 }, 'success info');
 ```
