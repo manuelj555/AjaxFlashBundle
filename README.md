@@ -1,7 +1,7 @@
 AjaxFlashBundle
 ===============
 
-This Bundle Allow the Process of Flashes in ajax request via Javascript
+This Bundle Allow the Process of Flashes in ajax request via Javascript. Require jQuery.
 
 Installation
 ----
@@ -38,7 +38,7 @@ public function registerBundles()
 
 In the config.yml (All config is Optional):
 
-```yml
+```yaml
 manuel_ajax_flash:
     auto_assets:
         pnotify: ~
@@ -108,4 +108,36 @@ Example of use:
         {{ block('ajax_flash_plugin') }}
     </body>
 </html>
+```
+
+Javascript Plugin
+-------
+
+Usage:
+
+```javascript
+$.ajaxFlash('*', function (message, type, title, icon) {
+    //call on all flash types. this function is called for each flash message
+    //the message parameter is a string
+});
+$.ajaxFlash('success info', function (message, type, title, icon) {
+    //call on success and info flash types. this function is called for each flash message
+    //the message parameter is a string
+});
+$.ajaxFlash('error', function (message, type, title, icon) {
+    //call on error flash type. this function is called for each flash message
+    //the message parameter is a string
+});
+
+// Working with array messages:
+
+$.ajaxFlash(function (messages, type, title, icon) {
+    //call in allways flash type, this function is called one time for all messages of the same type.
+    //the messages parameter is an array.
+});
+
+$.ajaxFlash(function (messages, type, title, icon) {
+    //call success and info flash types, this function is called one time for all messages of the same type.
+    //the messages parameter is an array.
+}, 'success info');
 ```
