@@ -1,5 +1,12 @@
 services:
-    ajax_flash_listener:
+    manuel_ajax_flash.ajax_flash_listener:
         class: Manuelj555\Bundle\AjaxFlashBundle\EventListener\PrepareFlashesListener
+        arguments: [%manuel_flash_bundle.flash_mapping%]
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+
+    manuel_ajax_flash.auto_assets_listener:
+        class: Manuelj555\Bundle\AjaxFlashBundle\EventListener\AutoAssetsListener
+        arguments: [%manuel_flash_bundle.flash_mapping%]
         tags:
             - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }

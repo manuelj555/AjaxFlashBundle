@@ -1,0 +1,22 @@
+{% block css -%}
+    <link href="{{ asset('asset/bundles/manuelajaxflash/vendor/pnotify/pnotify.custom.min.css') }}" type="text/css"
+          rel="stylesheet" media="screen"/>
+{%- endblock %}
+
+{% block js -%}
+    <script src="{{ asset('bundles/manuelajaxflash/vendor/pnotify/pnotify.custom.min.js') }}"></script>
+    <script src="{{ asset('bundles/manuelajaxflash/js/plugin.js') }}"></script>
+    <script>
+        jQuery(function ($) {
+            $.ajaxFlash('*', function (message, type, title, icon) {
+                new PNotify({
+                    type: type,
+                    text: message,
+                    title: title,
+                    icon: icon
+                });
+            });
+        })
+        ;
+    </script>
+{%- endblock %}

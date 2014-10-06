@@ -20,9 +20,40 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('manuel_ajax_flash');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode->children()
+//                ->scalarNode('auto_assets')->defaultFalse()->end()
+                ->arrayNode('auto_assets')
+                    ->canBeEnabled()
+                    ->children()
+                        ->arrayNode('pnotify')
+                            ->canBeEnabled()
+                            ->children()
+                                ->scalarNode('type')->end()
+                                ->scalarNode('styling')->defaultValue('bootstrap3')->end()
+                                ->scalarNode('animation')->defaultValue('none')->end()
+                            ->end()
+                        ->end()
+                        ->arrayNode('sticky')
+                            ->canBeEnabled()
+                            ->children()
+                                ->scalarNode('stickyClass')->end()
+//                                ->scalarNode('styling')->defaultValue('bootstrap3')->end()
+//                                ->scalarNode('animation')->defaultValue('none')->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+                ->arrayNode('mapping')
+                    ->useAttributeAsKey('flash_type')
+                    ->prototype('array')
+                        ->children()
+                            ->scalarNode('type')->defaultNull()->end()
+                            ->scalarNode('title')->defaultNull()->end()
+                            ->scalarNode('icon')->defaultNull()->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end();
 
         return $treeBuilder;
     }

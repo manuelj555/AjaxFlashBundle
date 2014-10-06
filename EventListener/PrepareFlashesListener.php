@@ -14,6 +14,12 @@ use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
  */
 class PrepareFlashesListener
 {
+    protected $mapping = array();
+
+    function __construct($mapping)
+    {
+        $this->mapping = $mapping;
+    }
 
     public function onKernelResponse(FilterResponseEvent $event)
     {
@@ -34,13 +40,22 @@ class PrepareFlashesListener
         }
 
         $formatted = array();
+        $usedTypes = array();
 
         foreach ($flashes as $type => $messages) {
-            $formatted[$type] = $messages;
+            if (isset($this->mapping[$type])) {
+                $formatted[$this->mapping[$type]['type']] = $messages;
+                $usedTypes[$this->mapping[$type]['type']] = $this->mapping[$type];
+            } else {
+                $formatted[$type] = $messages;
+            }
         }
 
         $event->getResponse()
             ->headers
             ->set('X-Ajax-Flash', json_encode($formatted));
+        $event->getResponse()
+            ->headers
+            ->set('X-Ajax-Flash-Config', json_encode($usedTypes));
     }
 } 
