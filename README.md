@@ -44,7 +44,7 @@ manuel_ajax_flash:
         pnotify: ~
 #        sticky: ~
     mapping:
-        success:
+#        success:
 #            title: Información
 #            icon: my-icon
 #        info:
