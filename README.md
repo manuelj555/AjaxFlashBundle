@@ -38,7 +38,7 @@ public function registerBundles()
 
 In the config.yml (All config is Optional):
 
-```yaml
+```yml
 manuel_ajax_flash:
     auto_assets:
         pnotify: ~
