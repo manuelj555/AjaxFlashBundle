@@ -23,6 +23,10 @@ class PrepareFlashesListener
 
     public function onKernelResponse(FilterResponseEvent $event)
     {
+        if(!$event->getRequest()->isXmlHttpRequest()){
+            return;
+        }
+
         if (!$event->getRequest()->hasSession()) {
             return;
         }
