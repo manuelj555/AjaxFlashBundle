@@ -31,6 +31,7 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('type')->end()
                                 ->scalarNode('styling')->defaultValue('bootstrap3')->end()
                                 ->scalarNode('animation')->defaultValue('none')->end()
+                                ->scalarNode('delay')->defaultValue('10000')->end()
                             ->end()
                         ->end()
                         ->arrayNode('sticky')
