@@ -81,7 +81,7 @@ manuel_ajax_flash:
              title: Error
 ```
 
-Manuel Assets Instalation
+Manual Assets Instalation
 -----------
 
 If you no enable the auto_assets config, you can use the twig view located in the bundle:
